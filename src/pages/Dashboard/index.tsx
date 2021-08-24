@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 
 import ic_book from '../../assets/ic-book.svg';
 import ic_plus from '../../assets/ic-plus.svg';
@@ -9,12 +9,19 @@ import Body from "../../components/Body";
 import { Container } from "./styles";
 import ModalAddContact from "../../components/ModalAddContact";
 
+interface IContact {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+}
+
 const Dashboard: React.FC = () => {
   const [addModalOpen, setAddModalOpen] = useState(true);
   const [editModalOpen, setEditModalOpen] = useState(false);
 
-  const [contacts, setContacts] = useState(() => { 
-    const storagedContacts = localStorage.getItem('@book:contacts');
+  const [contacts, setContacts] = useState<IContact[]>(() => {
+    const storagedContacts = localStorage.getItem('@agenda:contacts');
     if (storagedContacts) {
       return JSON.parse(storagedContacts);
     } else {
@@ -23,47 +30,47 @@ const Dashboard: React.FC = () => {
   });
 
   useEffect(() => {
-    localStorage.setItem('@book:contacts', JSON.stringify(contacts));
+    localStorage.setItem('@agenda:contacts', JSON.stringify(contacts));
   }, [contacts]);
-  
+
+  async function handleAddContact(contact: IContact): Promise<void> {
+    setContacts([...contacts, contact]);
+  } 
 
   function toogleAddModal():void {
     setAddModalOpen(!addModalOpen);
   }
-
-  function handleAddContact() {
-    alert("deu certo")
-  } 
-
   
   return (
-    <Container>
-      <div className="Agenda-vazia">
-        <Header />
+    <Container className="Agenda-vazia">
+      <Header />
 
-        <ModalAddContact 
-          isOpen={addModalOpen}
-          setIsOpen={toogleAddModal}
-          handleAddContact={handleAddContact}
-        />
+      <ModalAddContact 
+        isOpen={addModalOpen}
+        setIsOpen={toogleAddModal}
+        handleAddContact={handleAddContact}
+      />
         
-        <Body>
-        {contacts.length > 0 ? 
-          contacts.map((contact: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined) => (
-            <p>{contact}</p>
-          ))
-          :
-            <>
-              <img src={ic_book} alt="ubook" className="ic_book" />
-              <span className="Nenhum-contato-foi-c">Nenhum contato foi criado ainda.</span>
-              <div className="Rectangle">
-                <img src={ic_plus} alt="imagem-adicionar" className="ic_plus" />
-                <span className="Criar-contato">Criar contato</span>
-              </div>
-            </>
-          }    
-        </Body>
-      </div>
+      <Body>
+      {contacts ? 
+        contacts.map((contact: IContact) => (
+          <>
+            <p>{contact.name}</p>
+            <p>{contact.phone}</p>
+            <p>{contact.email}</p>
+          </>
+        ))
+        :
+          <>
+            <img src={ic_book} alt="ubook" className="ic_book" />
+            <span className="Nenhum-contato-foi-c">Nenhum contato foi criado ainda.</span>
+            <div className="Rectangle">
+              <img src={ic_plus} alt="imagem-adicionar" className="ic_plus" />
+              <span className="Criar-contato">Criar contato</span>
+            </div>
+          </>
+        }    
+      </Body>
     </Container>  
   )
 };
