@@ -1,10 +1,5 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Form as Unform } from "@unform/web";
-
-interface LabelProps {
-  htmlFor: string; 
-  labelType: string;
-}
 
 export const Form = styled(Unform)`
   .Criar-novo-contato {

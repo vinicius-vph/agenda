@@ -2,18 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import ReactModal from "react-modal";
 
-interface IContact {
-  id: number;
-  name: string;
-  email: string;
-  phone: string;
-}
-
-interface IModalProps {
-  children: any;
-  isOpen: boolean;
-  setIsOpen: () => void;
-}
+import IModalProps from "./dtos/IModalPropsDTO";
 
 const Modal: React.FC<IModalProps> = ({ children, isOpen, setIsOpen }) => {
   const [modalStatus, setModalStatus] = useState(isOpen);

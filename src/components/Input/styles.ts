@@ -1,10 +1,5 @@
 import styled, { css } from 'styled-components';
-
-interface IContainerProps {
-  isFocused: boolean;
-  isFilled: boolean;
-  name: string;
-}
+import IContainerProps from './dtos/IContainerPropsDTO';
 
 export const Container = styled.div<IContainerProps>`
   .text_field {
@@ -49,15 +44,3 @@ export const Container = styled.div<IContainerProps>`
   }
 
 `;
-
-// input {
-//   flex: 1;
-//   background: transparent;
-//   width: 100%;
-//   height: 40%;
-//   border-color: green;
-
-//   &::placeholder {
-//     color: #b7b7cc;
-//   }
-// }

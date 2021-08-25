@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import ic_book from '../../assets/ic-book.svg';
 import ic_plus from '../../assets/ic-plus.svg';
@@ -9,12 +9,7 @@ import Body from "../../components/Body";
 import { Container } from "./styles";
 import ModalAddContact from "../../components/ModalAddContact";
 
-interface IContact {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-}
+import IContact from "./dtos/IContactDTO";
 
 const Dashboard: React.FC = () => {
   const [addModalOpen, setAddModalOpen] = useState(true);
