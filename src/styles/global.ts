@@ -24,11 +24,14 @@ export default createGlobalStyle`
   }
 
   :root {
-    --pale-lilac: #e4e7f4;
-    --bluey-grey: #9198af;
-    --black: #2a2d3b;
-    --light-yellowish-green: #dbff90;
-    --white-two: #ffffff;
-    --cloudy-blue: #c0c3d2; ￼
+    --black: #2a2d3b,
+    --bluey-grey: #9198af,
+    --cloudy-blue: #c0c3d2, ￼
+    --dark: #2a2d3b,
+    --light-yellowish-green: #dbff90,
+    --pale-lilac: #e4e7f4,
+    --white: #e1e1e1,
+    --white-two: #ffffff,
+    --very-light-pink: #fff3f2,
   }
 `;
