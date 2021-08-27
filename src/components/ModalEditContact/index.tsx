@@ -8,25 +8,26 @@ import Button from "../Button";
 import { Form } from "./styles";
 
 import IContact from "./dtos/IContactDTO";
-import IModalProps from "./dtos/IModalPropsDTO";
+import IEditModalProps from "./dtos/IEditModalPropsDTO";
 
-const ModalAddContact: React.FC<IModalProps> = ({ isOpen, setIsOpen, handleAddContact }) => {
+const ModalEditContact: React.FC<IEditModalProps> = ({ 
+    isOpen, 
+    setIsOpen, 
+    editingContact, 
+    handleUpdateContact 
+  }) => {
   const formRef = useRef<FormHandles>(null);
-
-  function idGenerator():string  {
-    return '_' + Math.random().toString(36).substr(2, 9);
-  };
   
   const handleSubmit = useCallback(
-    (contact: IContact) => {
-      handleAddContact({...contact, id: idGenerator()});
+    (editedContact: IContact) => {
+      handleUpdateContact(editedContact);
       setIsOpen();
-    }, [handleAddContact, setIsOpen]
+    }, [handleUpdateContact, setIsOpen]
   );
   
   return (
-    <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-      <Form ref={formRef} onSubmit={handleSubmit} >
+    <Modal isOpen={isOpen} setIsOpen={setIsOpen} >
+      <Form ref={formRef} onSubmit={handleSubmit} initialData={editingContact}>
         <span className="Criar-novo-contato Text-Style">Criar novo contato</span>
         <div className="divisor"></div>
         <span className="Nome">Nome</span>
@@ -45,4 +46,4 @@ const ModalAddContact: React.FC<IModalProps> = ({ isOpen, setIsOpen, handleAddCo
   )
 };
 
-export default ModalAddContact;
+export default ModalEditContact;

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   .bg_header {
+    width: 1440px;
     height: 64px;
     margin: 0 0 96px;
     padding: 16px;

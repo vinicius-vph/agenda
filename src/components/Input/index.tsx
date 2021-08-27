@@ -22,10 +22,12 @@ const Input: React.FC<IInputProps> = ({ name, ...rest }) => {
   const { fieldName, defaultValue, registerField } = useField(name);
 
   const handleInputFocus = useCallback(() => {
-    setIsFocused(true);
+    // ao clicar no input
+    setIsFocused(true);    
   }, []);
 
   const handleInputBlur = useCallback(() => {
+    // após preencher o input
     setIsFocused(false);
     setIsFilled(!!inputRef.current?.value);
   }, []);

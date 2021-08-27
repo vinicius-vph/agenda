@@ -21,9 +21,9 @@ const Modal: React.FC<IModalProps> = ({ children, isOpen, setIsOpen }) => {
       style={{
         content: {
           width: '432px',
-          height: '342px',
+          height: '352px',
           margin: '170px 167px 23px 486px',
-          padding: '16px 0',
+          padding: '16px 0 0',
           borderRadius: '16px',
           boxShadow: '0 16px 10px 0 rgba(0, 0, 0, 0.16)',
           backgroundColor: 'var(--white-two)',
