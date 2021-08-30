@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  // empty address book
+  /* empty address book */
   .Agenda-vazia {
     width: 1440px;
     height: 1024px;
@@ -87,7 +87,7 @@ export const Container = styled.div`
     padding: 0 0 460px;
     background-color: #f8f9fd;
 
-    .Rectangle2 {
+    .RectangleHead {
       width: 1408px;
       height: 40px;
       margin: 16px 16px 1px 16px;
@@ -141,12 +141,9 @@ export const Container = styled.div`
     }
   }
 
-  .Rectangle3 {
+  .RectangleBody {
     display: flex;
-    flex-direction: row;
-    align-items: center;
     justify-content: space-between;
-    width: 1408px;
     height: 40px;
     margin: 1px 16px 0 16px;
     padding: 8px 16px 8px 8px;
@@ -157,7 +154,6 @@ export const Container = styled.div`
     &:hover {
       background-color: var(--very-light-pink);
     }
-    
 
     .Oval {
       display: inline;
@@ -184,7 +180,7 @@ export const Container = styled.div`
       }
     }
 
-    .Vincius {
+    .Vinicius {
       width: 36px;
       height: 16px;
       margin: 4px 0px 4px 16px;
@@ -211,7 +207,5 @@ export const Container = styled.div`
       margin: 4px 0 0px 0;
       object-fit: contain;
     }
-  }
-  
-
+  }  
 `;

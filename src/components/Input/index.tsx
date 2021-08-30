@@ -1,8 +1,6 @@
 import React, { 
   InputHTMLAttributes, 
-  useCallback, 
   useRef, 
-  useState, 
   useEffect, 
 } from "react";
 
@@ -17,20 +15,7 @@ interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
 const Input: React.FC<IInputProps> = ({ name, ...rest }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const [isFocused, setIsFocused] = useState(false);
-  const [isFilled, setIsFilled] = useState(false);
   const { fieldName, defaultValue, registerField } = useField(name);
-
-  const handleInputFocus = useCallback(() => {
-    // ao clicar no input
-    setIsFocused(true);    
-  }, []);
-
-  const handleInputBlur = useCallback(() => {
-    // após preencher o input
-    setIsFocused(false);
-    setIsFilled(!!inputRef.current?.value);
-  }, []);
 
   useEffect(() => {
     registerField({
@@ -41,10 +26,8 @@ const Input: React.FC<IInputProps> = ({ name, ...rest }) => {
   }, [fieldName, registerField]);
 
   return (
-    <Container isFilled={isFilled} isFocused={isFocused} name={name}>
+    <Container name={name}>
       <input 
-        onFocus={handleInputFocus}
-        onBlur={handleInputBlur} 
         defaultValue={defaultValue}
         ref={inputRef}
         {...rest}

@@ -7,7 +7,7 @@ export const Container = styled.div`
     margin: 0 0 96px;
     padding: 16px;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
   }
   
   img.ic_logo {
@@ -16,7 +16,7 @@ export const Container = styled.div`
     margin: 0 228px 0 0;
     object-fit: contain;
   }
-
+  
   /*input busca*/
   .busca_field {
     display: flex;

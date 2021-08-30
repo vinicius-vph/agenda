@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useEffect, useState } from "react";
 import { FormHandles } from '@unform/core';
 
 import Modal from "../Modal";
@@ -16,6 +16,8 @@ const ModalEditContact: React.FC<IEditModalProps> = ({
     editingContact, 
     handleUpdateContact 
   }) => {
+  const [isFilled, setIsFilled] = useState(true);
+
   const formRef = useRef<FormHandles>(null);
   
   const handleSubmit = useCallback(
@@ -38,7 +40,7 @@ const ModalEditContact: React.FC<IEditModalProps> = ({
           <Input name="phone" className="text_field" type="tel" maxLength={11} required/>
         <div className="divisor"></div>
         <span className="Cancelar" onClick={setIsOpen}>Cancelar</span>
-        <Button data-testid="save-contact" className="Rectangle-Copy">
+        <Button data-testid="save-contact" className="Rectangle-Copy" isFilled={isFilled}>
           <span className="Salvar">Salvar</span>
         </Button>
       </Form>

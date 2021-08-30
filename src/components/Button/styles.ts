@@ -1,6 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.button`
+interface ContainerProps {
+  isFilled: boolean;
+}
+
+export const Container = styled.button<ContainerProps>`
   // display: inline;
   width: 72px;
   height: 32px;
@@ -13,6 +17,12 @@ export const Container = styled.button`
       0, 0, 0.08), inset 0 0 0 0.5px rgba(0, 
         0, 0, 0.08), 0 2px 4px 0.5px rgba(0, 0, 0, 0.16);
   background-color: #fa7268;
+
+  ${props => props.isFilled && 
+    css`
+      opacity: 1;
+    `
+  }
 
   .Salvar {
     width: 40px;
@@ -27,5 +37,11 @@ export const Container = styled.button`
     letter-spacing: normal;
     text-align: center;
     color: var(--white-two);
+
+    ${props => props.isFilled &&
+      css`
+        opacity: 1;
+      `
+    }
   }
 `;

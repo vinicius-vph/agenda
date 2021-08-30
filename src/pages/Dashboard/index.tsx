@@ -116,14 +116,15 @@ const Dashboard: React.FC = () => {
             editingContact={editingContact}
             handleUpdateContact={handleUpdateContact}
           />
-          <div className="Rectangle2">
+          
+          <div className="RectangleHead">
             <span className="Contatos">Contatos</span>
             <span className="E-mail">E-mail</span>
             <span className="Telefone">Telefone</span>          
           </div>
           {
             contacts.map((contact: IContact) => (
-              <div className="Rectangle3" key={contact.id}>
+              <div className="RectangleBody" key={contact.id}>
                 <div>
                   <div className="Oval">
                     <a href="#">{contact.name[0]}</a>
