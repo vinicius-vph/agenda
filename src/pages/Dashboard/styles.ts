@@ -66,24 +66,11 @@ export const Container = styled.div`
     color: #fa7268;
   }
 
-  /* .Criar-novo-contato {
-    width: 132px;
-    height: 19px;
-    margin: 0 124px 12.5px 16px;
-    font-family: Roboto;
-    font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: var(--dark);
-  } */
-
   // full address book
   .Contato-criado-com-sucesso {
     width: 1440px;
     height: 1024px;
+    margin: 0 auto;
     padding: 0 0 460px;
     background-color: #f8f9fd;
 
@@ -137,75 +124,6 @@ export const Container = styled.div`
         letter-spacing: normal;
         color: var(--bluey-grey);
       }
-
     }
   }
-
-  .RectangleBody {
-    display: flex;
-    justify-content: space-between;
-    height: 40px;
-    margin: 1px 16px 0 16px;
-    padding: 8px 16px 8px 8px;
-    border-radius: 4px;
-    border: solid 1px var(--white);
-    background-color: var(--white-two);
-
-    &:hover {
-      background-color: var(--very-light-pink);
-    }
-
-    .Oval {
-      display: inline;
-      width: 24px;
-      height: 24px;
-      margin: 0 16px 0 0;
-      border-radius: 50%;
-      padding: 3px 5px 2px 6px;
-      background-color: #fa8d68;
-
-      a {
-        width: 13px;
-        height: 19px;
-        font-family: Roboto;
-        font-size: 16px;
-        font-weight: normal;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: center;
-        color: var(--white-two);
-        text-decoration: none;
-      }
-    }
-
-    .Vinicius {
-      width: 36px;
-      height: 16px;
-      margin: 4px 0px 4px 16px;
-      font-family: Roboto;
-      font-size: 14px;
-      font-weight: normal;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: normal;
-      letter-spacing: normal;
-      color: var(--dark);
-    }
-
-    img.ic_edit {
-      width: 16px;
-      height: 16px;
-      margin: 4px 24px 0px 0px;
-      object-fit: contain;
-    }
-
-    img.ic_delete {
-      width: 16px;
-      height: 16px;
-      margin: 4px 0 0px 0;
-      object-fit: contain;
-    }
-  }  
 `;

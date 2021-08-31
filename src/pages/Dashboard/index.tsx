@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 
 import ic_book from '../../assets/ic-book.svg';
 import ic_plus from '../../assets/ic-plus.svg';
-import ic_edit from '../../assets/ic-edit.svg';
-import ic_delete from '../../assets/ic-delete.svg';
 
 import Header from "../../components/Header";
 import Body from "../../components/Body";
 import ModalAddContact from "../../components/ModalAddContact";
 import ModalEditContact from "../../components/ModalEditContact";
+import ContactContainer from "../../components/ContactContainer";
 
 import { Container } from "./styles";
 
@@ -34,9 +33,16 @@ const Dashboard: React.FC = () => {
   function toogleAddModal():void {
     setAddModalOpen(!addModalOpen);
   }
-    // salva os contatos com os dados do formulário
+    // highlight ao criar contato
+  const [highlightContact, setHighlightContact] = useState<IContact>({} as IContact);
+  function timeOutHighlight(): void {
+    setTimeout(() => {setHighlightContact({} as IContact)}, 10000)
+  }
+    // salva os contatos com os dados do formulário e aciona o highlight
   async function handleAddContact(contact: IContact): Promise<void> {
     setContacts([...contacts, contact]);
+    setHighlightContact(contact);
+    timeOutHighlight();
   }
   
   // modal editar contato
@@ -108,36 +114,33 @@ const Dashboard: React.FC = () => {
             isOpen={addModalOpen}
             setIsOpen={toogleAddModal}
             handleAddContact={handleAddContact}
-          />
+            />
 
           <ModalEditContact
             isOpen={editModalOpen}
             setIsOpen={toggleEditModal}
             editingContact={editingContact}
             handleUpdateContact={handleUpdateContact}
-          />
-          
-          <div className="RectangleHead">
-            <span className="Contatos">Contatos</span>
-            <span className="E-mail">E-mail</span>
-            <span className="Telefone">Telefone</span>          
-          </div>
-          {
-            contacts.map((contact: IContact) => (
-              <div className="RectangleBody" key={contact.id}>
-                <div>
-                  <div className="Oval">
-                    <a href="#">{contact.name[0]}</a>
-                  </div> 
-                  <span className="Vinicius">{contact.name}</span>
-                </div>
-                <div>
-                  <img src={ic_edit} alt="imagem_edit" className="ic_edit" onClick={() => handleEditContact(contact)}></img>
-                  <img src={ic_delete} alt="imagem_delete" className="ic_delete" onClick={() => handleDeleteContact(contact.id)}></img>
-                </div>
-              </div>
-            ))
-          }
+            />
+
+          <Body>
+            <div className="RectangleHead">
+              <span className="Contatos">Contatos</span>
+              <span className="E-mail">E-mail</span>
+              <span className="Telefone">Telefone</span>          
+            </div>
+            {
+              contacts.map((contact: IContact) => (
+                <ContactContainer 
+                  key={contact.id}
+                  contact={contact}
+                  handleEditContact={handleEditContact}
+                  handleDeleteContact={handleDeleteContact}
+                  highlightContact={highlightContact}
+                />
+              ))
+            }
+          </Body>
         </div>    
       }
     </Container>  
