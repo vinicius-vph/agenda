@@ -1,10 +1,6 @@
-import React, { ButtonHTMLAttributes } from 'react';
-
+import React from 'react';
+import { ButtonProps } from '../../types';
 import { Container } from './styles';
-
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  isFilled: boolean;
-}
 
 const Button: React.FC<ButtonProps> = ({ children, isFilled, ...rest }) => (
   <Container type="submit" isFilled={isFilled} {...rest}>

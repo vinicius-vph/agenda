@@ -1,15 +1,10 @@
 import styled, { css } from 'styled-components';
+import { ButtonProps } from '../../types';
 
-interface ContainerProps {
-  isFilled: boolean;
-}
-
-export const Container = styled.button<ContainerProps>`
-  // display: inline;
+export const Container = styled.button<ButtonProps>`
   width: 72px;
   height: 32px;
   margin: 15px 16px 0;
-  // padding: 8px 16px;
   opacity: 0.32;
   border-radius: 16px;
   box-shadow: inset 0 0 0 1px rgba(255, 

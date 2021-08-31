@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
-import IContainerProps from './dtos/IContainerPropsDTO';
+import { IInputProps } from '../../types';
 
-export const Container = styled.div<IContainerProps>`
+export const Container = styled.div<IInputProps>`
   .text_field {
     ${props =>
       props.name === 'name' &&

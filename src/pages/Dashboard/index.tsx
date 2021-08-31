@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 import ic_book from '../../assets/ic-book.svg';
 import ic_plus from '../../assets/ic-plus.svg';
 
-import Header from "../../components/Header";
-import Body from "../../components/Body";
-import ModalAddContact from "../../components/ModalAddContact";
-import ModalEditContact from "../../components/ModalEditContact";
-import ContactContainer from "../../components/ContactContainer";
+import Header from '../../components/Header';
+import Body from '../../components/Body';
+import ModalAddContact from '../../components/ModalAddContact';
+import ModalEditContact from '../../components/ModalEditContact';
+import ContactContainer from '../../components/ContactContainer';
 
-import { Container } from "./styles";
+import { Container } from './styles';
 
-import IContact from "./dtos/IContactDTO";
+import { IContact } from '../../types';
 
 const Dashboard: React.FC = () => {  
   // pega os contatos salvos se ouver ou retorna um array vazio
@@ -26,19 +26,18 @@ const Dashboard: React.FC = () => {
     localStorage.setItem('@agenda:contacts', JSON.stringify(contacts));
   }, [contacts]);
 
-  // modal adicionar contato
-    //abre o modal
+  // adicionar contato
   const [addModalOpen, setAddModalOpen] = useState(false);
-    // faz a comutação do modal adicinar
-  function toogleAddModal():void {
+  const [highlightContact, setHighlightContact] = useState<IContact>({} as IContact);
+
+  function toogleAddModal(): void {
     setAddModalOpen(!addModalOpen);
   }
-    // highlight ao criar contato
-  const [highlightContact, setHighlightContact] = useState<IContact>({} as IContact);
+
   function timeOutHighlight(): void {
     setTimeout(() => {setHighlightContact({} as IContact)}, 10000)
   }
-    // salva os contatos com os dados do formulário e aciona o highlight
+
   async function handleAddContact(contact: IContact): Promise<void> {
     setContacts([...contacts, contact]);
     setHighlightContact(contact);
@@ -46,20 +45,18 @@ const Dashboard: React.FC = () => {
   }
   
   // modal editar contato
-    // abre o modal
   const [editModalOpen, setEditModalOpen] = useState(false);
-    // faz a comutação do modal editar
-  function toggleEditModal():void {
+  const [editingContact, setEditingContact] = useState<IContact>({} as IContact);
+
+  function toggleEditModal(): void {
     setEditModalOpen(!editModalOpen);
   }
-    // armazena o contato que será editado
-  const [editingContact, setEditingContact] = useState<IContact>({} as IContact);
-  // aciona a comutação do modal editar e fornece o contato que será utilizado no modal
+
   function handleEditContact(contact: IContact): void {
     setEditingContact(contact);
     toggleEditModal();
   }
-    // atualiza o contato com os dados do formulário
+
   async function handleUpdateContact(editedContact: IContact): Promise<void> {
     try {
       setContacts(
@@ -71,6 +68,7 @@ const Dashboard: React.FC = () => {
       console.log(error)
     }
   }
+
   //deletar contato
   async function handleDeleteContact(id: string): Promise<void> {
     try {

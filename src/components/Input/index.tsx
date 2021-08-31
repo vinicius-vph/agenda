@@ -1,16 +1,13 @@
 import React, { 
-  InputHTMLAttributes, 
   useRef, 
   useEffect, 
-} from "react";
+} from 'react';
 
 import { useField } from '@unform/core';
 
-import { Container } from "./styles";
+import { IInputProps } from '../../types';
 
-interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  name: string
-}
+import { Container } from "./styles";
 
 const Input: React.FC<IInputProps> = ({ name, ...rest }) => {
   const inputRef = useRef<HTMLInputElement>(null);

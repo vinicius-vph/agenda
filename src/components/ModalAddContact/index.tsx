@@ -1,16 +1,15 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormHandles } from '@unform/core';
 
-import Modal from "../Modal";
-import Input from "../Input";
-import Button from "../Button";
+import Modal from '../Modal';
+import Input from '../Input';
+import Button from '../Button';
 
-import { Form } from "./styles";
+import { Form } from './styles';
 
-import IContact from "./dtos/IContactDTO";
-import IModalProps from "./dtos/IModalPropsDTO";
+import { IContact, IModalAddProps } from '../../types';
 
-const ModalAddContact: React.FC<IModalProps> = ({ isOpen, setIsOpen, handleAddContact }) => {
+const ModalAddContact: React.FC<IModalAddProps> = ({ isOpen, setIsOpen, handleAddContact }) => {
   const [isFilled, setIsFilled] = useState(false);
 
   const formRef = useRef<FormHandles>(null);

@@ -1,12 +1,7 @@
 import styled, { css } from 'styled-components';
-import IContact from './dtos/IContactDTO';
+import { IContactContainerProps } from '../../types/';
 
-interface IContainerProps {
-  highlightContact: IContact;
-  contact: IContact; 
-}
-
-export const Container = styled.div<IContainerProps>`
+export const Container = styled.div <Omit<IContactContainerProps, 'handleDeleteContact' | 'handleEditContact'>>`
   :last-of-type .RectangleBody {
     ${props => props.highlightContact.id === props.contact.id && 
       css`

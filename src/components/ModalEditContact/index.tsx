@@ -1,16 +1,15 @@
-import React, { useCallback, useRef, useEffect, useState } from "react";
+import React, { useCallback, useRef, useState } from 'react';
 import { FormHandles } from '@unform/core';
 
-import Modal from "../Modal";
-import Input from "../Input";
-import Button from "../Button";
+import Modal from '../Modal';
+import Input from '../Input';
+import Button from '../Button';
 
-import { Form } from "./styles";
+import { Form } from './styles';
 
-import IContact from "./dtos/IContactDTO";
-import IEditModalProps from "./dtos/IEditModalPropsDTO";
+import { IContact, IModalEditProps } from '../../types';
 
-const ModalEditContact: React.FC<IEditModalProps> = ({ 
+const ModalEditContact: React.FC<IModalEditProps> = ({ 
     isOpen, 
     setIsOpen, 
     editingContact, 

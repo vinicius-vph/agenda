@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import ReactModal from "react-modal";
+import ReactModal from 'react-modal';
 
-import IModalProps from "./dtos/IModalPropsDTO";
+import { IModalProps } from '../../types';
 
 const Modal: React.FC<IModalProps> = ({ children, isOpen, setIsOpen }) => {
   const [modalStatus, setModalStatus] = useState(isOpen);

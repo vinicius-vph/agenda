@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   .bg_header {
@@ -7,7 +7,6 @@ export const Container = styled.div`
     margin: 0 0 96px;
     padding: 16px;
     display: flex;
-    /* align-items: center; */
   }
   
   img.ic_logo {

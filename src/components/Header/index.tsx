@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import ic_search from '../../assets/ic-search.svg';
 import ic_logo from '../../assets/ic-logo.svg';

@@ -1,7 +1,10 @@
 import React from 'react';
+
 import ic_edit from '../../assets/ic-edit.svg';
 import ic_delete from '../../assets/ic-delete.svg';
-import IContactContainerProps from './dtos/IContactContainerProps';
+
+import { IContactContainerProps } from '../../types/';
+
 import { Container } from './styles';
 
 const ContactContainer: React.FC<IContactContainerProps> = ({ contact, handleEditContact, handleDeleteContact, highlightContact }) => {
