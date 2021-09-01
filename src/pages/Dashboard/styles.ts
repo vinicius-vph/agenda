@@ -10,6 +10,13 @@ export const Container = styled.div`
     margin: 0 auto;
   }
   
+  .Adjust-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:80px;
+  }
+
   img.ic_book {
     width: 237px;
     height: 200px;
@@ -20,7 +27,7 @@ export const Container = styled.div`
   .Nenhum-contato-foi-c {
     width: 238px;
     height: 19px;
-    margin: 0;
+    margin: 0 auto;
     font-family: Roboto;
     font-size: 16px;
     font-weight: normal;
@@ -74,7 +81,10 @@ export const Container = styled.div`
     padding: 0 0 460px;
     background-color: #f8f9fd;
 
-    .RectangleHead {
+    .Rectangle-head {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
       width: 1408px;
       height: 40px;
       margin: 16px 16px 1px 16px;

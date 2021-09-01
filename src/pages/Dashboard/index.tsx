@@ -90,11 +90,13 @@ const Dashboard: React.FC = () => {
           />
 
           <Body>
-            <img src={ic_book} alt="ubook" className="ic_book" />
-            <span className="Nenhum-contato-foi-c">Nenhum contato foi criado ainda.</span>
-            <div className="Rectangle" onClick={toogleAddModal}>
-              <img src={ic_plus} alt="imagem-adicionar" className="ic_plus" />
-              <span className="Criar-contato">Criar contato</span>
+            <div className="Adjust-body">
+              <img src={ic_book} alt="ubook" className="ic_book" />
+              <span className="Nenhum-contato-foi-c">Nenhum contato foi criado ainda.</span>
+              <div className="Rectangle" onClick={toogleAddModal}>
+                <img src={ic_plus} alt="imagem-adicionar" className="ic_plus" />
+                <span className="Criar-contato">Criar contato</span>
+              </div>
             </div>
           </Body>
         </div>
@@ -122,13 +124,22 @@ const Dashboard: React.FC = () => {
             />
 
           <Body>
-            <div className="RectangleHead">
+            <div className="Rectangle-head">
               <span className="Contatos">Contatos</span>
               <span className="E-mail">E-mail</span>
               <span className="Telefone">Telefone</span>          
             </div>
-            {
-              contacts.map((contact: IContact) => (
+          {
+            contacts.sort(
+              (a, b) => {
+                const contactA = a.name.toLowerCase();
+                const contactB = b.name.toLowerCase();
+                if (contactA > contactB) { return 1; }
+                if (contactA < contactB) { return -1; }
+                return 0;
+              }
+            ).map(
+              (contact: IContact) => (               
                 <ContactContainer 
                   key={contact.id}
                   contact={contact}
@@ -136,8 +147,9 @@ const Dashboard: React.FC = () => {
                   handleDeleteContact={handleDeleteContact}
                   highlightContact={highlightContact}
                 />
-              ))
-            }
+              )
+            )
+          }
           </Body>
         </div>    
       }
