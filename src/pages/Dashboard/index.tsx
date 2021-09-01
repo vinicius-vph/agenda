@@ -7,6 +7,8 @@ import Header from '../../components/Header';
 import Body from '../../components/Body';
 import ModalAddContact from '../../components/ModalAddContact';
 import ModalEditContact from '../../components/ModalEditContact';
+import ModalDeleteContact from '../../components/ModalDeleteContact';
+
 import ContactContainer from '../../components/ContactContainer';
 
 import { Container } from './styles';
@@ -70,12 +72,25 @@ const Dashboard: React.FC = () => {
   }
 
   //deletar contato
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [deletingContact, setDeletingContact] = useState<IContact>({} as IContact);
+  
+  function toggleDeleteModal(): void {
+    setDeleteModalOpen(!deleteModalOpen);
+  }
+
+  function handleDeletingContact(contact: IContact): void {
+    setDeletingContact(contact);
+    toggleDeleteModal();
+  }
+
   async function handleDeleteContact(id: string): Promise<void> {
     try {
       setContacts(contacts.filter(contact => contact.id !== id));
     } catch (err) {
       console.log(err);
     }
+    toggleDeleteModal();
   }
 
   return (
@@ -121,7 +136,14 @@ const Dashboard: React.FC = () => {
             setIsOpen={toggleEditModal}
             editingContact={editingContact}
             handleUpdateContact={handleUpdateContact}
-            />
+          />
+
+          <ModalDeleteContact 
+            isOpen={deleteModalOpen}
+            setIsOpen={toggleDeleteModal}
+            deletingContact={deletingContact}
+            handleDeleteContact={handleDeleteContact}          
+          />
 
           <Body>
             <div className="Rectangle-head">
@@ -144,8 +166,8 @@ const Dashboard: React.FC = () => {
                   key={contact.id}
                   contact={contact}
                   handleEditContact={handleEditContact}
-                  handleDeleteContact={handleDeleteContact}
                   highlightContact={highlightContact}
+                  handleDeletingContact={handleDeletingContact}
                 />
               )
             )

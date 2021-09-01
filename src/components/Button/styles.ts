@@ -12,6 +12,7 @@ export const Container = styled.button<ButtonProps>`
       0, 0, 0.08), inset 0 0 0 0.5px rgba(0, 
         0, 0, 0.08), 0 2px 4px 0.5px rgba(0, 0, 0, 0.16);
   background-color: #fa7268;
+  border: none;
 
   ${props => props.isFilled && 
     css`

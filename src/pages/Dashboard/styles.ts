@@ -50,6 +50,8 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
+
   }
 
   img.ic_plus {
@@ -124,7 +126,6 @@ export const Container = styled.div`
       .Telefone {
         width: 51px;
         height: 15px;
-        // margin: 0 0 0 0;
         font-family: Roboto;
         font-size: 13px;
         font-weight: normal;

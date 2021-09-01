@@ -2,17 +2,26 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   .bg_header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     width: 1440px;
     height: 64px;
-    margin: 0 0 96px;
+    margin: 0 0 16px;
     padding: 16px;
     display: flex;
+
+    & > .Rectangle {
+      height: 32px;
+      padding: 8px 22px 8px 16px;
+      margin: 0 24px 0 0;
+    }
   }
-  
+
   img.ic_logo {
     width: 148px;
     height: 32px;
-    margin: 0 228px 0 0;
+    margin: 0 60px 0 0;
     object-fit: contain;
   }
   

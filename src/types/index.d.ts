@@ -1,7 +1,7 @@
 import { 
   InputHTMLAttributes, 
   ButtonHTMLAttributes 
-} from "react";
+} from 'react';
 
 export interface IContact {
   id: string;
@@ -12,9 +12,9 @@ export interface IContact {
 
 export interface IContactContainerProps {
   contact: IContact; 
-  handleEditContact: (contact: IContact) => void; 
-  handleDeleteContact: (id: string) => Promise<void>;
   highlightContact: IContact;
+  handleEditContact: (contact: IContact) => void; 
+  handleDeletingContact: (contact: IContact) => void;
 }
 
 export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -42,4 +42,11 @@ export interface IModalEditProps {
   setIsOpen: () => void;
   editingContact: IContact;
   handleUpdateContact: (contact: IContact) => void;
+}
+
+export interface IModalDeleteProps {
+  isOpen: boolean;
+  deletingContact: IContact;
+  setIsOpen: () => void;
+  handleDeleteContact: (id: string) => Promise<void>;
 }

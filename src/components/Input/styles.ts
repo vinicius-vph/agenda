@@ -13,6 +13,7 @@ export const Container = styled.div<IInputProps>`
         border-radius: 4px;
         border: solid 1px var(--cloudy-blue);
         background-color: var(--white-two);
+        text-transform: capitalize;
       `
     }
 

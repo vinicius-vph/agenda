@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { IContactContainerProps } from '../../types/';
 
-export const Container = styled.div <Omit<IContactContainerProps, 'handleDeleteContact' | 'handleEditContact'>>`
+export const Container = styled.div <Omit<IContactContainerProps, 'handleDeletingContact' | 'handleEditContact'>>`
   :last-of-type .RectangleBody {
     ${props => props.highlightContact.id === props.contact.id && 
       css`
@@ -50,7 +50,7 @@ export const Container = styled.div <Omit<IContactContainerProps, 'handleDeleteC
       }
     }
 
-    .Vinicius {
+    .Contact-name {
       width: 36px;
       height: 16px;
       margin: 4px 0px 4px 16px;
@@ -62,6 +62,7 @@ export const Container = styled.div <Omit<IContactContainerProps, 'handleDeleteC
       line-height: normal;
       letter-spacing: normal;
       color: var(--dark);
+      text-transform: capitalize;
     }
 
     img.ic_edit {
