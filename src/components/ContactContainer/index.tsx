@@ -13,7 +13,7 @@ const ContactContainer: React.FC<IContactContainerProps> = ({ contact, handleEdi
       <div className="RectangleBody" key={contact.id}>
         <div>
           <div className="Oval">
-          <a href="#">{contact.name.charAt(0).toUpperCase()}</a>
+          <span>{contact.name.charAt(0).toUpperCase()}</span>
         </div> 
         <span className="Contact-name">{contact.name}</span>
         </div>

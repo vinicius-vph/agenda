@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { IContactContainerProps } from '../../types/';
 
 export const Container = styled.div <Omit<IContactContainerProps, 'handleDeletingContact' | 'handleEditContact'>>`
-  :last-of-type .RectangleBody {
+  div.RectangleBody {
     ${props => props.highlightContact.id === props.contact.id && 
       css`
         background-color: var(--very-light-pink);
@@ -34,7 +34,7 @@ export const Container = styled.div <Omit<IContactContainerProps, 'handleDeletin
       padding: 3px 5px 2px 6px;
       background-color: #fa8d68;
 
-      a {
+      span {
         width: 13px;
         height: 19px;
         font-family: Roboto;
@@ -62,7 +62,6 @@ export const Container = styled.div <Omit<IContactContainerProps, 'handleDeletin
       line-height: normal;
       letter-spacing: normal;
       color: var(--dark);
-      text-transform: capitalize;
     }
 
     img.ic_edit {
