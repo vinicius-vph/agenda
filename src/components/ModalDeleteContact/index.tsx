@@ -24,14 +24,14 @@ const ModalDeleteContact: React.FC<IModalDeleteProps> = ({ isOpen, setIsOpen, de
         content: {
           width: '432px',
           height: '207px',
-          margin: '75px 521px 0 487px',
+          margin: '75px auto 0 auto',
           padding: '16px 0',
           borderRadius: '16px',
           boxShadow: '0 16px 10px 0 rgba(0, 0, 0, 0.16)',
           backgroundColor: 'var(--white-two)',
         },
         overlay: {
-          width: '1440px',
+          width: '100vw',
           height: '1024px',
           padding: '0 0 581px',
           backgroundColor: 'rgba(0, 0, 0, 0.4)',

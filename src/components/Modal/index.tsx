@@ -22,16 +22,17 @@ const Modal: React.FC<IModalProps> = ({ children, isOpen, setIsOpen }) => {
         content: {
           width: '432px',
           height: '352px',
-          margin: '170px 167px 23px 486px',
+          margin: '170px auto 23px auto',
           padding: '16px 0 0',
           borderRadius: '16px',
           boxShadow: '0 16px 10px 0 rgba(0, 0, 0, 0.16)',
           backgroundColor: 'var(--white-two)',
         },
         overlay: {
-          width: '1440px',
+          width: '100vw',
           height: '1024px',
           padding: '0 0 324px',
+          margin: '0 auto',
           backgroundColor: 'rgba(0, 0, 0, 0.4)',
         },
       }}
