@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { FormHandles } from '@unform/core';
 
 import Modal from '../Modal';
@@ -15,7 +16,7 @@ const ModalAddContact: React.FC<IModalAddProps> = ({ isOpen, setIsOpen, handleAd
   const formRef = useRef<FormHandles>(null);
 
   function idGenerator():string  {
-    return '_' + Math.random().toString(36).substr(2, 9);
+    return uuidv4();
   };
   
   function handleInputBlur(): void {
@@ -33,7 +34,6 @@ const ModalAddContact: React.FC<IModalAddProps> = ({ isOpen, setIsOpen, handleAd
       setIsFilled(false);
     }, [handleAddContact, setIsOpen]
   );
-  
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <Form ref={formRef} onSubmit={handleSubmit} >
