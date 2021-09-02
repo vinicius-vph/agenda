@@ -20,7 +20,15 @@ const ModalAddContact: React.FC<IModalAddProps> = ({ isOpen, setIsOpen, handleAd
   };
   
   function handleInputBlur(): void {
-    if (isOpen) {setIsFilled(true)};
+    const name = !!formRef.current?.getFieldValue('name')
+    const email = !!formRef.current?.getFieldValue('email')
+    const phone = !!formRef.current?.getFieldValue('phone')
+    
+    if (name || email || phone) {
+      setIsFilled(true)
+    }else {
+      return setIsFilled(false);
+    }
   }
 
   useEffect(() => {

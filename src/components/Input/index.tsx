@@ -1,6 +1,6 @@
-import React, { 
-  useRef, 
-  useEffect, 
+import React, {
+  useRef,
+  useEffect,
 } from 'react';
 
 import { useField } from '@unform/core';
@@ -24,14 +24,13 @@ const Input: React.FC<IInputProps> = ({ name, ...rest }) => {
 
   return (
     <Container name={name}>
-      <input 
+      <input
         defaultValue={defaultValue}
         ref={inputRef}
         {...rest}
       />
     </Container>
-  ) 
-
+  )
 };
 
 export default Input;

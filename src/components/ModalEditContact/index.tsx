@@ -19,6 +19,18 @@ const ModalEditContact: React.FC<IModalEditProps> = ({
 
   const formRef = useRef<FormHandles>(null);
   
+  function handleInputBlur(): void {
+    const name = !!formRef.current?.getFieldValue('name')
+    const email = !!formRef.current?.getFieldValue('email')
+    const phone = !!formRef.current?.getFieldValue('phone')
+    
+    if (name || email || phone) {
+      setIsFilled(true);
+    }else {
+      return setIsFilled(false);
+    }
+  }
+
   const handleSubmit = useCallback(
     (editedContact: IContact) => {
       handleUpdateContact(editedContact);
@@ -32,11 +44,11 @@ const ModalEditContact: React.FC<IModalEditProps> = ({
         <span className="Criar-novo-contato Text-Style">Criar novo contato</span>
         <div className="divisor"></div>
         <span className="Nome">Nome</span>
-          <Input name="name" className="text_field" type="text" required/>
+          <Input name="name" className="text_field" type="text" onBlur={handleInputBlur} required/>
         <span className="E-mail">Email</span>
-          <Input name="email" className="text_field" type="email" required/>
+          <Input name="email" className="text_field" type="email" onBlur={handleInputBlur} required/>
         <span className="Telefone">Telefone</span>
-          <Input name="phone" className="text_field" type="tel" maxLength={11} required/>
+          <Input name="phone" className="text_field" type="tel" maxLength={11} onBlur={handleInputBlur} required/>
         <div className="divisor"></div>
         <span className="Cancelar" onClick={setIsOpen}>Cancelar</span>
         <Button data-testid="save-contact" className="Rectangle-Copy" isFilled={isFilled}>
