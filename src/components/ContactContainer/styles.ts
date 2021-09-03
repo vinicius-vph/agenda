@@ -12,6 +12,7 @@ export const Container = styled.div <Omit<IContactContainerProps, 'handleDeletin
 
   .RectangleBody {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     width: 1408px;
     height: 40px;
@@ -24,6 +25,9 @@ export const Container = styled.div <Omit<IContactContainerProps, 'handleDeletin
     &:hover {
       background-color: var(--very-light-pink);
     }
+    
+    .Rectangle-flex:first-of-type {flex: 29.5%;}
+    .Rectangle-flex:last-of-type {flex: 3%;}
 
     .Oval {
       display: inline;
@@ -53,7 +57,7 @@ export const Container = styled.div <Omit<IContactContainerProps, 'handleDeletin
     .Contact-name {
       width: 36px;
       height: 16px;
-      margin: 4px 0px 4px 16px;
+      /* margin: 4px 351px 4px 0px; */
       font-family: Roboto;
       font-size: 14px;
       font-weight: normal;

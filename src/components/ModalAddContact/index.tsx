@@ -12,9 +12,9 @@ import { IContact, IModalAddProps } from '../../types';
 
 const ModalAddContact: React.FC<IModalAddProps> = ({ isOpen, setIsOpen, handleAddContact }) => {
   const [isFilled, setIsFilled] = useState(false);
-
+  
   const formRef = useRef<FormHandles>(null);
-
+  
   function idGenerator():string  {
     return uuidv4();
   };
@@ -42,6 +42,7 @@ const ModalAddContact: React.FC<IModalAddProps> = ({ isOpen, setIsOpen, handleAd
       setIsFilled(false);
     }, [handleAddContact, setIsOpen]
   );
+
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <Form ref={formRef} onSubmit={handleSubmit} >
