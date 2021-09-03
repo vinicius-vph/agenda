@@ -11,14 +11,28 @@ import { Form } from './styles';
 import { IContact, IModalAddProps } from '../../types';
 
 const ModalAddContact: React.FC<IModalAddProps> = ({ isOpen, setIsOpen, handleAddContact }) => {
+  const formRef = useRef<FormHandles>(null);
+
   const [isFilled, setIsFilled] = useState(false);
   
-  const formRef = useRef<FormHandles>(null);
+  function idGenerator():string  {return uuidv4()};
+
+  function formattedPhone(): string | undefined {
+    const inputValue = formRef.current?.getFieldValue('phone');
+    const phone = inputValue.replace(/[^\d]/g, "");
+
+    if (!phone) return phone;
+    
+    if (phone.length < 3) return phone;
+      
+    if (phone.length < 7) {
+      return `(${phone.slice(0,2)}) ${phone.slice(2,7)}`;
+    }
+    return `(${phone.slice(0,2)}) ${phone.slice(2,7)}-${phone.slice(7,11)}` 
+  }
   
-  function idGenerator():string  {
-    return uuidv4();
-  };
-  
+  function handleInputPhone() {formRef.current?.setFieldValue('phone', formattedPhone())}
+
   function handleInputBlur(): void {
     const name = !!formRef.current?.getFieldValue('name')
     const email = !!formRef.current?.getFieldValue('email')
@@ -53,7 +67,7 @@ const ModalAddContact: React.FC<IModalAddProps> = ({ isOpen, setIsOpen, handleAd
         <span className="E-mail">Email</span>
           <Input name="email" className="text_field" type="email" onBlur={handleInputBlur} required/>
         <span className="Telefone">Telefone</span>
-          <Input name="phone" className="text_field" type="tel" onBlur={handleInputBlur} maxLength={11} required/>
+          <Input name="phone" className="text_field" type="tel" onBlur={handleInputBlur} maxLength={15} onChange={handleInputPhone} required/>
         <div className="divisor"></div>
         <span className="Cancelar" onClick={setIsOpen}>Cancelar</span>
         <Button data-testid="save-contact" className="Rectangle-Copy" isFilled={isFilled}>

@@ -15,10 +15,24 @@ const ModalEditContact: React.FC<IModalEditProps> = ({
     editingContact, 
     handleUpdateContact 
   }) => {
+  const formRef = useRef<FormHandles>(null);
   const [isFilled, setIsFilled] = useState(true);
 
-  const formRef = useRef<FormHandles>(null);
+  function formattedPhone(): string | undefined {
+    const inputValue = formRef.current?.getFieldValue('phone');
+    const phone = inputValue.replace(/[^\d]/g, "");
+
+    if (!phone) return phone;
+    
+    if (phone.length < 3) return phone;
+      
+    if (phone.length < 7) {
+      return `(${phone.slice(0,2)}) ${phone.slice(2,7)}`;
+    }
+    return `(${phone.slice(0,2)}) ${phone.slice(2,7)}-${phone.slice(7,11)}` 
+  }
   
+  function handleInputPhone() {formRef.current?.setFieldValue('phone', formattedPhone())}
   function handleInputBlur(): void {
     const name = !!formRef.current?.getFieldValue('name')
     const email = !!formRef.current?.getFieldValue('email')
@@ -48,7 +62,7 @@ const ModalEditContact: React.FC<IModalEditProps> = ({
         <span className="E-mail">Email</span>
           <Input name="email" className="text_field" type="email" onBlur={handleInputBlur} required/>
         <span className="Telefone">Telefone</span>
-          <Input name="phone" className="text_field" type="tel" maxLength={11} onBlur={handleInputBlur} required/>
+          <Input name="phone" className="text_field" type="tel" maxLength={15} onBlur={handleInputBlur} onChange={handleInputPhone} required/>
         <div className="divisor"></div>
         <span className="Cancelar" onClick={setIsOpen}>Cancelar</span>
         <Button data-testid="save-contact" className="Rectangle-Copy" isFilled={isFilled}>
