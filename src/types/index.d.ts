@@ -10,9 +10,14 @@ export interface IContact {
   phone: string;
 }
 
+export interface IHeaderProps {
+  handleFilterContact: (contact: string) => void | undefined; 
+}
+
 export interface IContactContainerProps {
   contact: IContact; 
   highlightContact: IContact;
+  filteredContact: IContact | undefined;
   handleEditContact: (contact: IContact) => void; 
   handleDeletingContact: (contact: IContact) => void;
 }

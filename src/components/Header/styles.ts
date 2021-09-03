@@ -1,6 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+interface IContainer {
+  hasChildren: boolean;
+}
+
+export const Container = styled.div<IContainer>`
   .bg_header {
     display: flex;
     flex-direction: row;
@@ -25,7 +29,6 @@ export const Container = styled.div`
     object-fit: contain;
   }
   
-  /*input busca*/
   .busca_field {
     display: flex;
     align-items: center;
@@ -35,6 +38,12 @@ export const Container = styled.div`
     padding: 7px 8px 6px;
     border-radius: 4px;
     background-color: var(--pale-lilac);
+
+    input {
+      background-color: var(--pale-lilac);
+      border: none;
+      width: 1008px;
+    }
   }
   
   .Buscar {
@@ -56,5 +65,13 @@ export const Container = styled.div`
     height: 16px;
     margin: 1px 0 0px 0px;
     object-fit: contain;
+  }
+  
+  ${props => !props.hasChildren && 
+    css`
+      .busca_field {
+        margin-left: 168px;
+      }  
+    `
   }
 `;
