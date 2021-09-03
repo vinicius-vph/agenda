@@ -8,27 +8,23 @@ import Body from '../../components/Body';
 import ModalAddContact from '../../components/ModalAddContact';
 import ModalEditContact from '../../components/ModalEditContact';
 import ModalDeleteContact from '../../components/ModalDeleteContact';
-
 import ContactContainer from '../../components/ContactContainer';
 
 import { Container } from './styles';
 
 import { IContact } from '../../types';
 
-const Dashboard: React.FC = () => {  
-  // pega os contatos salvos se ouver ou retorna um array vazio
+const Dashboard: React.FC = () => {
   const [contacts, setContacts] = useState<IContact[]>(() => {
     const storagedContacts = localStorage.getItem('@agenda:contacts');
-    
+
     return ( storagedContacts ? JSON.parse(storagedContacts) : [] );
   });
 
-  // salva os contatos sempre que ouver alteração na variavel ou inicializa um array no localstorge, 
   useEffect(() => {
     localStorage.setItem('@agenda:contacts', JSON.stringify(contacts));
   }, [contacts]);
 
-  // adicionar contato
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [highlightContact, setHighlightContact] = useState<IContact>({} as IContact);
 
@@ -37,7 +33,7 @@ const Dashboard: React.FC = () => {
   }
 
   function timeOutHighlight(): void {
-    setTimeout(() => {setHighlightContact({} as IContact)}, 10000)
+    setTimeout(() => {setHighlightContact({} as IContact)}, 10000);
   }
 
   async function handleAddContact(contact: IContact): Promise<void> {
@@ -45,8 +41,7 @@ const Dashboard: React.FC = () => {
     setHighlightContact(contact);
     timeOutHighlight();
   }
-  
-  // modal editar contato
+
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [editingContact, setEditingContact] = useState<IContact>({} as IContact);
 
@@ -71,10 +66,9 @@ const Dashboard: React.FC = () => {
     }
   }
 
-  //deletar contato
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [deletingContact, setDeletingContact] = useState<IContact>({} as IContact);
-  
+
   function toggleDeleteModal(): void {
     setDeleteModalOpen(!deleteModalOpen);
   }
@@ -92,13 +86,22 @@ const Dashboard: React.FC = () => {
     }
     toggleDeleteModal();
   }
+  
+  const [filteredContact, setFilteredContact] = useState<IContact | undefined>({} as IContact);
+
+  function handleFilterContact(contactName: string):  void | undefined {
+    setFilteredContact(contacts.find(contact =>
+      contact.name.toLowerCase() === contactName?.toLowerCase())
+    );
+  }
 
   return (
     <Container>
-      { contacts.length === 0 ? 
+      { contacts.length === 0 ?
         <div className="Agenda-vazia">
-          <Header />
-          <ModalAddContact 
+          <Header handleFilterContact={handleFilterContact} />
+
+          <ModalAddContact
             isOpen={addModalOpen}
             setIsOpen={toogleAddModal}
             handleAddContact={handleAddContact}
@@ -117,15 +120,15 @@ const Dashboard: React.FC = () => {
         </div>
 
       :
-        <div className="Contato-criado-com-sucesso"> 
-          <Header>
+        <div className="Contato-criado-com-sucesso">
+          <Header handleFilterContact={handleFilterContact}>
             <div className="Rectangle" onClick={toogleAddModal}>
               <img src={ic_plus} alt="imagem-adicionar" className="ic_plus" />
               <span className="Criar-contato">Criar contato</span>
             </div>
           </Header>
 
-          <ModalAddContact 
+          <ModalAddContact
             isOpen={addModalOpen}
             setIsOpen={toogleAddModal}
             handleAddContact={handleAddContact}
@@ -138,18 +141,17 @@ const Dashboard: React.FC = () => {
             handleUpdateContact={handleUpdateContact}
           />
 
-          <ModalDeleteContact 
+          <ModalDeleteContact
             isOpen={deleteModalOpen}
             setIsOpen={toggleDeleteModal}
             deletingContact={deletingContact}
-            handleDeleteContact={handleDeleteContact}          
+            handleDeleteContact={handleDeleteContact}
           />
-
           <Body>
             <div className="Rectangle-head">
               <span className="Contatos">Contatos</span>
               <span className="E-mail">E-mail</span>
-              <span className="Telefone">Telefone</span>          
+              <span className="Telefone">Telefone</span>
             </div>
           {
             contacts.sort(
@@ -161,9 +163,10 @@ const Dashboard: React.FC = () => {
                 return 0;
               }
             ).map(
-              (contact: IContact) => (               
-                <ContactContainer 
+              (contact: IContact) => (
+                <ContactContainer
                   key={contact.id}
+                  filteredContact={filteredContact}
                   contact={contact}
                   handleEditContact={handleEditContact}
                   highlightContact={highlightContact}
@@ -173,9 +176,9 @@ const Dashboard: React.FC = () => {
             )
           }
           </Body>
-        </div>    
+        </div>
       }
-    </Container>  
+    </Container>
   )
 };
 

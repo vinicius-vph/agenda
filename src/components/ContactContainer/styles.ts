@@ -2,6 +2,15 @@ import styled, { css } from 'styled-components';
 import { IContactContainerProps } from '../../types/';
 
 export const Container = styled.div <Omit<IContactContainerProps, 'handleDeletingContact' | 'handleEditContact'>>`
+  ${props => props.contact.id === props.filteredContact?.id && 
+    css`
+      div.RectangleBody {
+        border: 2px solid #fa7268;
+        color: #fa7268; 
+      }    
+    `
+  }
+
   div.RectangleBody {
     ${props => props.highlightContact.id === props.contact.id && 
       css`

@@ -7,11 +7,11 @@ import { IContactContainerProps } from '../../types/';
 
 import { Container } from './styles';
 
-const ContactContainer: React.FC<IContactContainerProps> = ({ contact, handleEditContact, highlightContact, handleDeletingContact  }) => {
+const ContactContainer: React.FC<IContactContainerProps> = ({ contact, filteredContact, handleEditContact, highlightContact, handleDeletingContact  }) => {
   const color = randomColor();
 
   return (
-    <Container highlightContact={highlightContact} contact={contact}>
+    <Container highlightContact={highlightContact} contact={contact} filteredContact={filteredContact}>
       <div className="RectangleBody" key={contact.id}>
         <div className="Rectangle-flex">
           <div className="Oval" style={{backgroundColor: color}}>
