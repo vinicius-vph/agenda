@@ -2,93 +2,110 @@ import styled, { css } from 'styled-components';
 import { IContactContainerProps } from '../../types/';
 
 export const Container = styled.div <Omit<IContactContainerProps, 'handleDeletingContact' | 'handleEditContact'>>`
-  ${props => props.contact.id === props.filteredContact?.id && 
+  ${props => 
+    props.contact.name === props.filteredContact?.name && 
     css`
-      div.RectangleBody {
-        border: 2px solid #fa7268;
-        color: #fa7268; 
+      {
+        border: 1px solid #fa7268;
+        background-color: yellow;
       }    
     `
   }
 
-  div.RectangleBody {
-    ${props => props.highlightContact.id === props.contact.id && 
+  ${props => 
+    props.filteredContact?.name !== props.contact.name && 
+    typeof props.filteredContact?.id === 'string' &&
+    css`
+      {
+        display: none;
+      }    
+    `
+  }
+
+  {
+    ${props => 
+      props.highlightContact.id === props.contact.id && 
       css`
         background-color: var(--very-light-pink);
       `
     }
   }
 
-  .RectangleBody {
+  display: flex;
+  flex-direction: row;
+  width: 1408px;
+  height: 40px;
+  margin: 1px 16px 0 16px;
+  padding: 8px 16px 8px 8px;
+  border-radius: 4px;
+  border: solid 1px var(--white);
+  background-color: var(--white-two);
+
+  &:hover {
+    background-color: var(--very-light-pink);
+  }
+  
+  .Rectangle-flex:first-of-type {
+    flex: 29.5%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 1408px;
-    height: 40px;
-    margin: 1px 16px 0 16px;
-    padding: 8px 16px 8px 8px;
-    border-radius: 4px;
-    border: solid 1px var(--white);
-    background-color: var(--white-two);
+    align-items: center;    
+  }
 
-    &:hover {
-      background-color: var(--very-light-pink);
-    }
+  .Rectangle-flex:last-of-type {flex: 3%;}
+  
+  .Oval {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin: 0 16px 0 0;
+	  border-radius: 15px;
+    padding: 3px 5px 2px 6px;
+    background-color: #fa8d68;
     
-    .Rectangle-flex:first-of-type {flex: 29.5%;}
-    .Rectangle-flex:last-of-type {flex: 3%;}
-
-    .Oval {
-      display: inline;
-      width: 24px;
-      height: 24px;
-      margin: 0 16px 0 0;
-      border-radius: 50%;
-      padding: 3px 5px 2px 6px;
-      background-color: #fa8d68;
-
-      span {
-        width: 13px;
-        height: 19px;
-        font-family: Roboto;
-        font-size: 16px;
-        font-weight: normal;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: center;
-        color: var(--white-two);
-        text-decoration: none;
-      }
-    }
-
-    .Contact-name {
-      width: 36px;
-      height: 16px;
-      /* margin: 4px 351px 4px 0px; */
+    span {
+      width: 13px;
+      height: 19px;
       font-family: Roboto;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: normal;
       font-stretch: normal;
       font-style: normal;
       line-height: normal;
       letter-spacing: normal;
-      color: var(--dark);
+      text-align: center;
+      color: var(--white-two);
+      text-decoration: none;
     }
+  }
 
-    img.ic_edit {
-      width: 16px;
-      height: 16px;
-      margin: 4px 24px 0px 0px;
-      object-fit: contain;
-    }
+  .Contact-name {
+    width: 36px;
+    height: 16px;
+    margin: 4px 0 4px 0px;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: var(--dark);
+  }
 
-    img.ic_delete {
-      width: 16px;
-      height: 16px;
-      margin: 4px 0 0px 0;
-      object-fit: contain;
-    }
+  img.ic_edit {
+    width: 16px;
+    height: 16px;
+    margin: 4px 24px 0px 0px;
+    object-fit: contain;
+  }
+
+  img.ic_delete {
+    width: 16px;
+    height: 16px;
+    margin: 4px 0 0px 0;
+    object-fit: contain;
   }
 `;

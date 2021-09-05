@@ -14,7 +14,8 @@ export const Container = styled.button<ButtonProps>`
   background-color: #fa7268;
   border: none;
 
-  ${props => props.isFilled && 
+  ${props => 
+    props.isFilled && 
     css`
       opacity: 1;
     `
@@ -34,7 +35,8 @@ export const Container = styled.button<ButtonProps>`
     text-align: center;
     color: var(--white-two);
 
-    ${props => props.isFilled &&
+    ${props => 
+      props.isFilled &&
       css`
         opacity: 1;
       `

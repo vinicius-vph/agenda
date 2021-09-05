@@ -4,22 +4,19 @@ interface IContainer {
   hasChildren: boolean;
 }
 
-export const Container = styled.div<IContainer>`
-  .bg_header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 1440px;
-    height: 64px;
-    margin: 0 0 16px;
-    padding: 16px;
-    display: flex;
-
-    & > .Rectangle {
-      height: 32px;
-      padding: 8px 22px 8px 16px;
-      margin: 0 24px 0 0;
-    }
+export const Container = styled.header<IContainer>`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 1440px;
+  height: 64px;
+  margin: 0 0 16px;
+  padding: 16px;
+  
+  div.Rectangle {
+    height: 32px;
+    padding: 8px 22px 8px 16px;
+    margin: 0 24px 0 0;
   }
 
   img.ic_logo {
@@ -67,7 +64,8 @@ export const Container = styled.div<IContainer>`
     object-fit: contain;
   }
   
-  ${props => !props.hasChildren && 
+  ${props => 
+    !props.hasChildren && 
     css`
       .busca_field {
         margin-left: 168px;

@@ -26,7 +26,7 @@ export default createGlobalStyle`
   :root {
     --black: #2a2d3b;
     --bluey-grey: #9198af;
-    --cloudy-blue: #c0c3d2; ￼
+    --cloudy-blue: #c0c3d2;
     --dark: #2a2d3b;
     --light-yellowish-green: #dbff90;
     --pale-lilac: #e4e7f4;

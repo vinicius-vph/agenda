@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { 
+  useEffect, 
+  useState 
+} from 'react';
 
 import ReactModal from 'react-modal';
 
@@ -6,7 +9,14 @@ import { IModalDeleteProps } from '../../types';
 
 import { Container } from './styles';
 
-const ModalDeleteContact: React.FC<IModalDeleteProps> = ({ isOpen, setIsOpen, deletingContact, handleDeleteContact }) => {
+const ModalDeleteContact: React.FC<IModalDeleteProps> = (
+  { 
+    isOpen, 
+    setIsOpen, 
+    deletingContact, 
+    handleDeleteContact 
+  }
+  ) => {
   const [modalStatus, setModalStatus] = useState(isOpen);
 
   useEffect(()=> {
@@ -48,7 +58,10 @@ const ModalDeleteContact: React.FC<IModalDeleteProps> = ({ isOpen, setIsOpen, de
       </span>
       <div className="Last-divisor"></div>
       <span className="Cancelar" onClick={setIsOpen}>Cancelar</span>
-      <button className="Rectangle-Copy-delete" onClick={() => {handleDeleteContact(deletingContact.id)}}>
+      <button 
+        className="Rectangle-Copy-delete" 
+        onClick={() => {handleDeleteContact(deletingContact.id)}}
+      >
         <span className="Excluir">Excluir</span>
       </button>
     </Container>

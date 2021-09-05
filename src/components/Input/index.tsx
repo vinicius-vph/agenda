@@ -9,7 +9,12 @@ import { IInputProps } from '../../types';
 
 import { Container } from "./styles";
 
-const Input: React.FC<IInputProps> = ({ name, ...rest }) => {
+const Input: React.FC<IInputProps> = (
+  { 
+    name, 
+    ...rest 
+  }
+  ) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { fieldName, defaultValue, registerField } = useField(name);
@@ -23,13 +28,12 @@ const Input: React.FC<IInputProps> = ({ name, ...rest }) => {
   }, [fieldName, registerField]);
 
   return (
-    <Container name={name}>
-      <input
-        defaultValue={defaultValue}
-        ref={inputRef}
-        {...rest}
-      />
-    </Container>
+    <Container 
+      name={name}
+      defaultValue={defaultValue}
+      ref={inputRef}
+      {...rest}
+    />
   )
 };
 

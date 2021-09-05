@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  /* empty address book */
   .Agenda-vazia {
     width: 1440px;
     height: 1024px;
@@ -75,7 +74,6 @@ export const Container = styled.div`
     color: #fa7268;
   }
 
-  // full address book
   .Contato-criado-com-sucesso {
     width: 1440px;
     height: 1024px;
@@ -96,7 +94,7 @@ export const Container = styled.div`
       background-color: var(--white-two);
   
       .Contatos {
-        width: 53px;
+        min-width: 53px;
         height: 15px;
         margin: 0 335px 0 0;
         font-family: Roboto;
@@ -110,7 +108,7 @@ export const Container = styled.div`
       }
   
       .E-mail {
-        width: 36px;
+        min-width: 36px;
         height: 15px;
         margin: 0 448px 0 0;
         font-family: Roboto;
@@ -124,7 +122,7 @@ export const Container = styled.div`
       }
   
       .Telefone {
-        width: 51px;
+        min-width: 51px;
         height: 15px;
         font-family: Roboto;
         font-size: 13px;
