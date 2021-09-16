@@ -16,8 +16,14 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizelegibility;
+    min-width: 500px;
   }
 
+  main {
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+  
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;

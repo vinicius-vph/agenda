@@ -33,10 +33,9 @@ export const Container = styled.div <Omit<IContactContainerProps, 'handleDeletin
 
   display: flex;
   flex-direction: row;
-  width: 1408px;
+  width: 100%;
   height: 40px;
-  margin: 1px 16px 0 16px;
-  padding: 8px 16px 8px 8px;
+  padding: 8px 16px 8px 8px; 
   border-radius: 4px;
   border: solid 1px var(--white);
   background-color: var(--white-two);
@@ -44,15 +43,22 @@ export const Container = styled.div <Omit<IContactContainerProps, 'handleDeletin
   &:hover {
     background-color: var(--very-light-pink);
   }
-  
-  .Rectangle-flex:first-of-type {
-    flex: 29.5%;
+
+  .Rectangle-flex {
+    width: 33%;
     display: flex;
     flex-direction: row;
-    align-items: center;    
+    align-items: center;
+
+  }
+  .Rectangle-flex:first-of-type {
+    width: 34%;
+   
   }
 
-  .Rectangle-flex:last-of-type {flex: 3%;}
+  .Rectangle-flex:last-of-type {
+    justify-content: space-between;
+  }
   
   .Oval {
     display: flex;
@@ -82,9 +88,8 @@ export const Container = styled.div <Omit<IContactContainerProps, 'handleDeletin
   }
 
   .Contact-name {
-    width: 36px;
+    width: 110px;
     height: 16px;
-    margin: 4px 0 4px 0px;
     font-family: Roboto;
     font-size: 14px;
     font-weight: normal;
@@ -94,18 +99,20 @@ export const Container = styled.div <Omit<IContactContainerProps, 'handleDeletin
     letter-spacing: normal;
     color: var(--dark);
   }
-
-  img.ic_edit {
-    width: 16px;
-    height: 16px;
-    margin: 4px 24px 0px 0px;
-    object-fit: contain;
-  }
-
-  img.ic_delete {
-    width: 16px;
-    height: 16px;
-    margin: 4px 0 0px 0;
-    object-fit: contain;
+  .Button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+    img.ic_edit, img.ic_delete {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+    }
+  
+    img.ic_delete {
+      margin-left: 12px;
+    }
   }
 `;

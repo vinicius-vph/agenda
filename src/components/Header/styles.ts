@@ -8,7 +8,8 @@ export const Container = styled.header<IContainer>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 1440px;
+  justify-content: space-between;
+  width: 100%;
   height: 64px;
   margin: 0 0 16px;
   padding: 16px;
@@ -22,14 +23,14 @@ export const Container = styled.header<IContainer>`
   img.ic_logo {
     width: 148px;
     height: 32px;
-    margin: 0 60px 0 0;
+    /* margin: 0 60px 0 0; */
     object-fit: contain;
   }
   
   .busca_field {
     display: flex;
     align-items: center;
-    width: 1032px;
+    width: 35%;
     height: 32px;
     margin: 0;
     padding: 7px 8px 6px;
@@ -39,7 +40,7 @@ export const Container = styled.header<IContainer>`
     input {
       background-color: var(--pale-lilac);
       border: none;
-      width: 1008px;
+      width: 95%;
     }
   }
   
