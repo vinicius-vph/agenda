@@ -103,9 +103,9 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <Container>
-    { contacts.length === 0 ?
-      <div className="Agenda-vazia">
+    <>
+    { !contacts.length ?
+      <Container className="Agenda-vazia">
         <Header 
           handleFilterContact={handleFilterContact} 
         />
@@ -124,9 +124,9 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
         </Body>
-      </div>
+      </Container>
     :
-      <div className="Contato-criado-com-sucesso">
+      <Container className="Contato-criado-com-sucesso">
         <Header handleFilterContact={handleFilterContact}>
           <div className="Rectangle" onClick={toogleAddModal}>
             <img src={ic_plus} alt="imagem-adicionar" className="ic_plus" />
@@ -179,9 +179,9 @@ const Dashboard: React.FC = () => {
           )
         }
         </Body>
-      </div>
+      </Container>
     }
-    </Container>
+    </>
   )
 };
 

@@ -32,26 +32,27 @@ const ContactContainer: React.FC<IContactContainerProps> = (
         </div> 
         <span className="Contact-name">{contact.name}</span>
       </div>
-      <div className="Rectangle-flex" style={{flex: '34%'}}>
+      <div className="Rectangle-flex">
         <span className="Contact-name">{contact.email}</span>
       </div>
-      <div className="Rectangle-flex" style={{flex: '28.5%'}}>
-        <span className="Contact-name">{contact.phone}</span>
-      </div>
       <div className="Rectangle-flex">
-        <img 
-          src={ic_edit} 
-          alt="imagem_edit" 
-          className="ic_edit" 
-          onClick={() => handleEditContact(contact)}
-        />
-        <img 
-          src={ic_delete} 
-          alt="imagem_delete" 
-          className="ic_delete" 
-          onClick={() => {handleDeletingContact(contact)}}
-        />
+        <span className="Contact-name">{contact.phone}</span>
+        <div className="Button-container"> 
+          <img 
+            src={ic_edit} 
+            alt="imagem_edit" 
+            className="ic_edit" 
+            onClick={() => handleEditContact(contact)}
+          />
+          <img 
+            src={ic_delete} 
+            alt="imagem_delete" 
+            className="ic_delete" 
+            onClick={() => {handleDeletingContact(contact)}}
+          />
+        </div>
       </div>
+      
     </Container>
   )
 };

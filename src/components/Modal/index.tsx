@@ -39,7 +39,7 @@ const Modal: React.FC<IModalProps> = (
         },
         overlay: {
           width: '100vw',
-          height: '1024px',
+          height: '100vh',
           padding: '0 0 324px',
           margin: '0 auto',
           backgroundColor: 'rgba(0, 0, 0, 0.4)',
