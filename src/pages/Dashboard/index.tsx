@@ -16,16 +16,16 @@ import ModalDeleteContact from '../../components/ModalDeleteContact';
 import ContactContainer from '../../components/ContactContainer';
 
 import { Container } from './styles';
+import api from '../../services/api';
 
 const Dashboard: React.FC = () => {
+  
   const [contacts, setContacts] = useState<IContact[]>(() => {
-    const storagedContacts = localStorage.getItem('@agenda:contacts');
-
-    return ( storagedContacts ? JSON.parse(storagedContacts) : [] );
+    return api.get();
   });
 
   useEffect(() => {
-    localStorage.setItem('@agenda:contacts', JSON.stringify(contacts));
+    return api.post(contacts);
   }, [contacts]);
 
   const [addModalOpen, setAddModalOpen] = useState(false);
