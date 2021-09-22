@@ -1,13 +1,13 @@
 import { IContact } from "../types";
-import orm from "./orm"
+import fakeEndpoint from "../utils/fakeEndpoint"
 
 const api = {
-  get() {
-    return orm.findAllContacts(); 
+  async get(path: string) {
+    return fakeEndpoint.find(path); 
   },
 
-  post(contacts: IContact[]) {
-    return orm.create(contacts);
+  async post(path: string, contactData: IContact[]) {
+    return fakeEndpoint.create(path, contactData);
   }
 }
 
