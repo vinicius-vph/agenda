@@ -6,7 +6,6 @@ import React, {
 import { IContact } from '../../types';
 
 import ic_book from '../../assets/ic-book.svg';
-import ic_plus from '../../assets/ic-plus.svg';
 
 import Header from '../../components/Header';
 import Body from '../../components/Body';
@@ -14,51 +13,56 @@ import ModalAddContact from '../../components/ModalAddContact';
 import ModalEditContact from '../../components/ModalEditContact';
 import ModalDeleteContact from '../../components/ModalDeleteContact';
 import ContactContainer from '../../components/ContactContainer';
+import ButtonAddContact from '../../components/ButtonAddContact/'
 
 import { Container } from './styles';
+
 import api from '../../services/api';
 
 const Dashboard: React.FC = () => {
-  
-  const [contacts, setContacts] = useState<IContact[]>(() => {
-    return api.get();
-  });
+  const KEY: string  = 'contacts';
+
+  const [contacts, setContacts] = useState<IContact[]>([]);
+
+  useEffect(()=> {
+    api.get(KEY).then((response: IContact[]) => {
+      setContacts(response);
+    });
+  }, []);
 
   useEffect(() => {
-    return api.post(contacts);
+    api.post(KEY, contacts);
   }, [contacts]);
-
+  
   const [addModalOpen, setAddModalOpen] = useState(false);
-  const [highlightContact, setHighlightContact] = useState<IContact>({} as IContact);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [idToHighlight, setIdToHighlight] = useState('');
+  const [editingContact, setEditingContact] = useState<IContact>({} as IContact);
+  const [deletingContact, setDeletingContact] = useState<IContact>({} as IContact);
+  const [filteredContact, setFilteredContact] = useState<IContact | undefined>({} as IContact);
 
-  function toogleAddModal(): void {
-    setAddModalOpen(!addModalOpen);
+  function toggle(setState: React.Dispatch<React.SetStateAction<boolean>>, modal: boolean): void {
+    setState(!modal);
   }
-
+  
   function timeOutHighlight(): void {
-    setTimeout(() => {setHighlightContact({} as IContact)}, 10000);
+    setTimeout(() => {setIdToHighlight('')}, 10000);
   }
 
   async function handleAddContact(contact: IContact): Promise<void> {
     try {
       setContacts([...contacts, contact]);
-      setHighlightContact(contact);
+      setIdToHighlight(contact.id)
       timeOutHighlight();
     } catch (error) {
       console.log(error);
     }
   }
 
-  const [editModalOpen, setEditModalOpen] = useState(false);
-  const [editingContact, setEditingContact] = useState<IContact>({} as IContact);
-
-  function toggleEditModal(): void {
-    setEditModalOpen(!editModalOpen);
-  }
-
   function handleEditContact(contact: IContact): void {
     setEditingContact(contact);
-    toggleEditModal();
+    toggle(setEditModalOpen, editModalOpen);
   }
 
   async function handleUpdateContact(editedContact: IContact): Promise<void> {
@@ -73,16 +77,9 @@ const Dashboard: React.FC = () => {
     }
   }
 
-  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [deletingContact, setDeletingContact] = useState<IContact>({} as IContact);
-
-  function toggleDeleteModal(): void {
-    setDeleteModalOpen(!deleteModalOpen);
-  }
-
   function handleDeletingContact(contact: IContact): void {
     setDeletingContact(contact);
-    toggleDeleteModal();
+    toggle(setDeleteModalOpen, deleteModalOpen);
   }
 
   async function handleDeleteContact(id: string): Promise<void> {
@@ -91,10 +88,9 @@ const Dashboard: React.FC = () => {
     } catch (error) {
       console.log(error);
     }
-    toggleDeleteModal();
+    toggle(setDeleteModalOpen, deleteModalOpen);
   }
   
-  const [filteredContact, setFilteredContact] = useState<IContact | undefined>({} as IContact);
 
   function handleFilterContact(contactName: string):  void | undefined {
     setFilteredContact(contacts.find(contact =>
@@ -111,42 +107,36 @@ const Dashboard: React.FC = () => {
         />
         <ModalAddContact
           isOpen={addModalOpen}
-          setIsOpen={toogleAddModal}
+          setIsOpen={() => toggle(setAddModalOpen, addModalOpen)}
           handleAddContact={handleAddContact}
         />
         <Body>
           <div className="Adjust-body">
             <img src={ic_book} alt="ubook" className="ic_book" />
             <span className="Nenhum-contato-foi-c">Nenhum contato foi criado ainda.</span>
-            <div className="Rectangle" onClick={toogleAddModal}>
-              <img src={ic_plus} alt="imagem-adicionar" className="ic_plus" />
-              <span className="Criar-contato">Criar contato</span>
-            </div>
+            <ButtonAddContact toggle={() => toggle(setAddModalOpen, addModalOpen)} />
           </div>
         </Body>
       </Container>
     :
       <Container className="Contato-criado-com-sucesso">
         <Header handleFilterContact={handleFilterContact}>
-          <div className="Rectangle" onClick={toogleAddModal}>
-            <img src={ic_plus} alt="imagem-adicionar" className="ic_plus" />
-            <span className="Criar-contato">Criar contato</span>
-          </div>
+        <ButtonAddContact toggle={() => toggle(setAddModalOpen, addModalOpen)} />
         </Header>
         <ModalAddContact
           isOpen={addModalOpen}
-          setIsOpen={toogleAddModal}
+          setIsOpen={() => toggle(setAddModalOpen, addModalOpen)}
           handleAddContact={handleAddContact}
         />
         <ModalEditContact
           isOpen={editModalOpen}
-          setIsOpen={toggleEditModal}
+          setIsOpen={() => toggle(setEditModalOpen, editModalOpen)}
           editingContact={editingContact}
           handleUpdateContact={handleUpdateContact}
         />
         <ModalDeleteContact
           isOpen={deleteModalOpen}
-          setIsOpen={toggleDeleteModal}
+          setIsOpen={() => toggle(setDeleteModalOpen, deleteModalOpen)}
           deletingContact={deletingContact}
           handleDeleteContact={handleDeleteContact}
         />
@@ -158,7 +148,7 @@ const Dashboard: React.FC = () => {
           </div>
         {
           contacts.sort(
-            (a, b) => {
+            (a: IContact, b: IContact) => {
               const contactA = a.name.toLowerCase();
               const contactB = b.name.toLowerCase();
               if (contactA > contactB) { return 1; }
@@ -170,9 +160,9 @@ const Dashboard: React.FC = () => {
               <ContactContainer
                 key={contact.id}
                 contact={contact}
+                idToHighlight={idToHighlight}
                 filteredContact={filteredContact}
                 handleEditContact={handleEditContact}
-                highlightContact={highlightContact}
                 handleDeletingContact={handleDeletingContact}
               />
             )

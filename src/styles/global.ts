@@ -17,11 +17,7 @@ export default createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizelegibility;
     min-width: 500px;
-  }
-
-  main {
-    max-width: 100vw;
-    max-height: 100vh;
+    background-color: var(--background);
   }
   
   code {
@@ -39,5 +35,16 @@ export default createGlobalStyle`
     --white: #e1e1e1;
     --white-two: #ffffff;
     --very-light-pink: #fff3f2;
+    --background: #282a36;
+    --current-line: #44475a;
+    --foreground: #f8f8f2;
+    --comment:#6272a4;
+    --cyan:#8be9fd;
+    --green:#50fa7b;
+    --orange:	#ffb86c;	
+    --pink:	#ff79c6;	
+    --purple:	#bd93f9;	
+    --red:	#ff5555;	
+    --yellow:	#f1fa8c;
   }
 `;

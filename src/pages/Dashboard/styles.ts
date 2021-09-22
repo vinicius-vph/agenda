@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 
 export const Container = styled.section`
   min-width: 500px;
-  background-color: #f8f9fd;
   margin: 0 auto;
 
   .Contatos, 
