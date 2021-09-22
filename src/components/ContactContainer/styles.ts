@@ -24,7 +24,7 @@ export const Container = styled.div <Omit<IContactContainerProps, 'handleDeletin
 
   {
     ${props => 
-      props.highlightContact.id === props.contact.id && 
+      props.idToHighlight === props.contact.id && 
       css`
         background-color: var(--very-light-pink);
       `

@@ -11,20 +11,19 @@ import { Container } from './styles';
 const ContactContainer: React.FC<IContactContainerProps> = (
   { 
     contact, 
+    idToHighlight,  
     filteredContact, 
     handleEditContact, 
-    highlightContact, 
-    handleDeletingContact  
+    handleDeletingContact
   }
   ) => {
   const color = randomColor();
 
   return (
     <Container 
-      key={contact.id}
       contact={contact}  
-      highlightContact={highlightContact} 
-      filteredContact={filteredContact} 
+      idToHighlight={idToHighlight} 
+      filteredContact={filteredContact}
     >
       <div className="Rectangle-flex">
         <div className="Oval" style={{backgroundColor: color}}>

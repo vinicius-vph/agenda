@@ -16,7 +16,7 @@ export interface IHeaderProps {
 
 export interface IContactContainerProps {
   contact: IContact; 
-  highlightContact: IContact;
+  idToHighlight: string;
   filteredContact: IContact | undefined;
   handleEditContact: (contact: IContact) => void; 
   handleDeletingContact: (contact: IContact) => void;
@@ -31,27 +31,21 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export interface IModalProps {
-  children: any;
+  children?: any;
   isOpen: boolean;
   setIsOpen: () => void;
 }
 
-export interface IModalAddProps {
-  isOpen: boolean;
-  setIsOpen: () => void;
+export interface IModalAddProps extends IModalProps {
   handleAddContact: (data: IContact) => void;
 }
 
-export interface IModalEditProps {
-  isOpen: boolean;
-  setIsOpen: () => void;
+export interface IModalEditProps extends IModalProps {
   editingContact: IContact;
   handleUpdateContact: (contact: IContact) => void;
 }
 
-export interface IModalDeleteProps {
-  isOpen: boolean;
+export interface IModalDeleteProps extends IModalProps {
   deletingContact: IContact;
-  setIsOpen: () => void;
   handleDeleteContact: (id: string) => Promise<void>;
 }
