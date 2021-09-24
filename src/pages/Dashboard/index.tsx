@@ -20,18 +20,18 @@ import { Container } from './styles';
 import api from '../../services/api';
 
 const Dashboard: React.FC = () => {
-  const KEY: string  = 'contacts';
+  const PATH: string  = 'contacts';
 
   const [contacts, setContacts] = useState<IContact[]>([]);
 
   useEffect(()=> {
-    api.get(KEY).then((response: IContact[]) => {
+    api.get(PATH).then((response: IContact[]) => {
       setContacts(response);
     });
   }, []);
 
   useEffect(() => {
-    api.post(KEY, contacts);
+    api.post(PATH, contacts);
   }, [contacts]);
   
   const [addModalOpen, setAddModalOpen] = useState(false);
