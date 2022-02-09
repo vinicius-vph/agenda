@@ -101,6 +101,7 @@ const Dashboard: React.FC = () => {
   return (
     <>
     { !contacts.length ?
+      /*Agenda Vazia*/
       <Container className="Agenda-vazia">
         <Header 
           handleFilterContact={handleFilterContact} 
@@ -113,12 +114,13 @@ const Dashboard: React.FC = () => {
         <Body>
           <div className="Adjust-body">
             <img src={ic_book} alt="ubook" className="ic_book" />
-            <span className="Nenhum-contato-foi-c">Nenhum contato foi criado ainda.</span>
+            <span className="Nenhum-contato-foi-c" style={{color:'white'}}> 😕 Nenhum contato para mostrar</span>
             <ButtonAddContact toggle={() => toggle(setAddModalOpen, addModalOpen)} />
           </div>
         </Body>
       </Container>
     :
+      /*Agenda Cheia*/
       <Container className="Contato-criado-com-sucesso">
         <Header handleFilterContact={handleFilterContact}>
         <ButtonAddContact toggle={() => toggle(setAddModalOpen, addModalOpen)} />

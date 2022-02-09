@@ -6,10 +6,10 @@ interface IButtonAddProps{
 }
 
 const ButtonAddContact: React.FC<IButtonAddProps> = ({toggle}) => (
-  <div className="Rectangle" onClick={toggle}>
+  <button className="Rectangle" onClick={toggle}>
     <img src={ic_plus} alt="imagem-adicionar" className="ic_plus" />
     <span className="Criar-contato">Criar contato</span>
-  </div>
+  </button>
 );
 
 export default ButtonAddContact;
